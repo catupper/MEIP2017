@@ -1,5 +1,9 @@
 #include<stdio.h>
 
+/*
+Do not copy!!
+ */
+
 int sq_sum(int n){
   int ans, i;
 
