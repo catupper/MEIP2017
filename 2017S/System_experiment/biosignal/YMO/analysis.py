@@ -36,6 +36,7 @@ with open("muishiki1_trans.dat", "w") as f:
 
         x.append(tmpx)
         y.append(np.abs(d))
+        f.write("%3.10f, %3.10f\n"%(tmpx, np.abs(d)))
 
 print len(x)
 plt.plot(x, y, color = "k")
