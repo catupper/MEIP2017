@@ -7,4 +7,4 @@ i bird 鳥
 s bird
 i cat ねこ
 s cat
-d
+q
