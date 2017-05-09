@@ -1,0 +1,6 @@
+key[abc] = あ
+key[bac] = う
+Not found
+key[cba] = か
+key[bca] = え
+key[cab] = お

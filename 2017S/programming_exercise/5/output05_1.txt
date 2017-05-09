@@ -1,0 +1,5 @@
+Not found
+key[cat] = ネコ
+Not found
+key[bird] = 鳥
+key[cat] = ねこ

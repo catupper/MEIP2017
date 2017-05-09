@@ -1,0 +1,10 @@
+s bird
+i cat ネコ
+s cat
+d cat
+s cat
+i bird 鳥
+s bird
+i cat ねこ
+s cat
+d

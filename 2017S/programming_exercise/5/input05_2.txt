@@ -1,0 +1,15 @@
+i abc あ
+i acb い
+i bac う
+i bca え
+i cab お
+i cba か
+s abc
+s bac
+d bac
+s bac
+s cba
+d abc
+s bca
+s cab
+q
