@@ -22,3 +22,6 @@ Uploadしたい方は私(catupper)に連絡するか、あるいはこのリポ�
 
 Slack連携しています。
 
+## 歴史
+2017-5-30にGithubからBitBucketに移行しました。
+
