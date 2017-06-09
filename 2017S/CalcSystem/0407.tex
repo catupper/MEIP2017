@@ -2,8 +2,8 @@
 %
 \usepackage{amsmath,amssymb}
 \usepackage{bm}
+\usepackage{color}
 \usepackage[dvipdfmx]{graphicx}
-\usepackage{graphicx}
 \usepackage{ascmac}
 \usepackage{makeidx}
 \usepackage{tikz}
@@ -800,6 +800,117 @@ $f=1$となるすべての極小項の集合を$S$とする。STEP1で得た主�
   &\delta:X \times Q \rightarrow Q\textrm{なる状態遷移関数}\\
   &\omega:Q \rightarrow Z\textrm{なる出力関数}
 \end{align*}
+
+\section{フリップフロップ}
+\textbf{記憶素子(フリップフロップ)}は2つの内部状態を持つ記憶素子である。与えられた論理関数を実現する順序回路を作る場合、採用する記憶素子の動作に依存してその設計は変わってくる。
+
+\subsubsection{(ラッチ(非同期式フリップフロップ)}
+\textbf{ラッチ(Latch)}は2入力 $(S, R)$ 、2出力 $(Q, \overline{Q})$型のフリップフロップである。
+以下の性質を満たす
+\begin{itemize}
+  \item $S=R=0$: $Q, \overline{Q}$は値を維持。状態を保つ。
+  \item $S=1, R=0$: $Q = 1, \overline{Q} = 0$。状態をSetする。
+  \item $S=0, R=1$: $Q = 0, \overline{Q} = 1$。状態Resetする。
+  \item $S=R=1$: 禁止入力。
+\end{itemize}
+\begin{figure}[h]
+  \centering\includegraphics[height=3cm]{Images/Latch.png}
+  \caption{ラッチを実現する回路}
+\end{figure}
+
+
+\subsubsection{フリップフロップ(同期式フリップフロップ)}
+\textbf{フリップフロップ}はクロック信号に同期して状態が変化する記憶素子である。状態遷移はクロック毎に発生する。
+
+\subsubsection{(1)SRフリップフロップ}
+入力信号が安定しているときに十分幅の短いクロックが入力されるという仮定のもとで、以下のような入力駆動条件を持つフリップフロップ回路である。
+\begin{table}[htb]
+  \begin{center}
+    \begin{tabular}{cc|cc} 
+      $Q_t$ & $Q_{t+1}$ & $S$ & $R$ \\ \hline 
+      0 & 0 & 0 & $\ast$ \\
+      0 & 1 & 1 & 0 \\
+      1 & 0 & 0 & 1 \\
+      1 & 1 & $\ast$ & 0 \\
+    \end{tabular}
+  \end{center}
+  \caption{SRフリップフロップの入力駆動条件}
+\end{table}
+\begin{figure}[h]
+  \centering\includegraphics[height=3cm]{Images/Flipflop.png}
+  \caption{SRフリップフロップ実現する回路}
+\end{figure}
+
+
+\subsubsection{(2)Dフリップフロップ}
+\textbf{Dフリップフロップ}はクロック入力とD入力からなるフリップフロップである。
+動作として、Dの入力が1なら次の状態は1であり、Dの入力が0ならば次の入力が0になる。
+\begin{table}[htb]
+  \begin{center}
+    \begin{tabular}{cc|cc} 
+      $Q_t$ & $Q_{t+1}$ & $D$  \\ \hline 
+      0 & 0 & 0 \\
+      0 & 1 & 1 \\
+      1 & 0 & 0 \\
+      1 & 1 & 1 \\
+    \end{tabular}
+  \end{center}
+  \caption{Dフリップフロップの入力駆動条件}
+\end{table}
+
+\begin{figure}[h]
+  \centering\includegraphics[height=3cm]{Images/DFlipflop.png}
+  \caption{Dフリップフロップ実現する回路}
+\end{figure}
+
+\subsubsection{(3)Tフリップフロップ}
+そういうのがある
+
+\subsubsection{(4)JKフリップフロップ}
+\textbf{JKフリップフロップ}はクロック入力とJ入力とK入力からなるフリップフロップである。
+入力駆動条件はSRフリップフロップとほぼ同じだが、$J=K=1$となる入力が新たに許可されている。
+$J=K=1$の場合状態を反転するようになっている。
+\begin{table}[htb]
+  \begin{center}
+    \begin{tabular}{cc|cc} 
+      $Q_t$ & $Q_{t+1}$ & $J$ & $K$ \\ \hline 
+      0 & 0 & 0 & $\ast$ \\
+      0 & 1 & 1 & $\ast$ \\
+      1 & 0 & $\ast$ & 1 \\
+      1 & 1 & $\ast$ & 0 \\
+    \end{tabular}
+  \end{center}
+  \caption{SRフリップフロップの入力駆動条件}
+\end{table}
+
+
+\subsubsection{マスタースレーブ方式フリップフロップ}
+今までの回路では「入力が安定時に十分幅の短いクロックが入る」という仮定がされていた。
+これはフリップフロップの出力が安定する前に入力が変化すると誤動作する可能性があるという\textbf{タイミング問題}のためである。
+\textbf{マスタースレーブ方式フリップフロップ}はその仮定が成立しない時ででもうまく動作する。
+マスタースレーブ方式のフリップフロップは、マスターフリップフロップとスレーブフリップフロップの2つで構成される。
+スレーブのクロック入力はマスターのクロック入力の反転を与える。
+
+
+\begin{figure}[h]
+  \centering\includegraphics[height=3cm]{Images/DMasterSlave.png}
+  \caption{マスタースレーブ方式のDフリップフロップ。Dフリップフロップをマスターとし、SRフリップフロップをスレーブとしている。}
+\end{figure}
+
+\subsubsection{エッジトリガ方式フリップフロップ}
+\textbf{エッジトリガ方式フリップフロップ(Edge-Trigger)}はクロック信号の立ち上がり時点の入力のみで次の状態を決定するフリップフロップである。
+エッジトリガ方式フリップフロップを実現する回路図は複雑である。
+
+\subsection{順序回路の合成}
+与えられた動作仕様から順序回路を導出することを考えたい。以下のようなプロセスで導出することができる。
+
+\begin{enumerate}
+\item[(1)]動作仕様を状態遷移図などの形式的記述で与える。
+\item[(2)]状態遷移図を簡単化する。
+\item[(3)]使用するフリップフロップの種類と数を決定する。
+\item[(4)]入力駆動条件を用いて状態遷移関数と出力関数を導出。
+  
+\end{enumerate}
 
 \begin{thebibliography}{20}
 \bibitem{...}...
